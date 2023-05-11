@@ -21,19 +21,27 @@ Product.init(
       allowNull: false,
     },
     price: {
-      type: dataType.INTEGER,
+      type: dataType.DECIMAL,
+      allowNull: false,
+      validate:{
+        isdecimal: true,
+      },
     },
     stock: {
       type: datatype.INTEGER,
-      defaultValue: 0,
+      allowNull: false,
+      defaultValue: 10,
+      validate: {
+        isNumeric: true,
+      },
     },
     category_id: {
       type: DataTypes.INTEGER,
       references: {
         model: 'category',
         key: 'id',
-      }
-    }
+      },
+    },
   },
   {
     sequelize,
@@ -41,7 +49,7 @@ Product.init(
     freezeTableName: true,
     underscored: true,
     modelName: 'product',
-  }
+  },
 );
 
 module.exports = Product;
